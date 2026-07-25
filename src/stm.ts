@@ -47,12 +47,12 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
       // Register the four 3D buttons for pointer interaction
       trackSelectables: () => raycast.trackSelectables({ objs3D: [objs3D.Button1, objs3D.Button2, objs3D.Button3, objs3D.Button4] }),
       // Hold the opening pose until the user chooses an animation
-      setcharStartPose: () => engine.playClip({ layer: char.layer, clip: char.clips.throw, reset: true, endSpeed: 0 }),
+      setCharStartPose: () => engine.playClip({ layer: char.layer, clip: char.clips.throw, reset: true, endSpeed: 0 }),
       // Blend to the animation selected by each button
-      playcharThrow: () => engine.playClip({ layer: char.layer, clip: char.clips.throw, fadeDuration: fadeDura, reset: true }),
-      playcharSitting: () => engine.playClip({ layer: char.layer, clip: char.clips.lay, fadeDuration: fadeDura, reset: true }),
-      playcharJump: () => engine.playClip({ layer: char.layer, clip: char.clips.jump, fadeDuration: fadeDura, reset: true }),
-      playcharYes: () => engine.playClip({ layer: char.layer, clip: char.clips.yes, fadeDuration: fadeDura, reset: true }),
+      playCharThrow: () => engine.playClip({ layer: char.layer, clip: char.clips.throw, fadeDuration: fadeDura, reset: true }),
+      playCharSitting: () => engine.playClip({ layer: char.layer, clip: char.clips.lay, fadeDuration: fadeDura, reset: true }),
+      playCcharJump: () => engine.playClip({ layer: char.layer, clip: char.clips.jump, fadeDuration: fadeDura, reset: true }),
+      playCharYes: () => engine.playClip({ layer: char.layer, clip: char.clips.yes, fadeDuration: fadeDura, reset: true }),
       // Update button materials for selected, default, and hover states
       selectBut1: () => engine.setMaterialProperties({ obj: buts.but1, color: cols.selected }),
       deselectBut1: () => engine.setMaterialProperties({ obj: buts.but1, color: cols.but1Def }),
@@ -82,7 +82,7 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         on: {
           SCENE_READY: {
             target: 'Idle',
-            actions: ['trackSelectables', 'setcharStartPose'],
+            actions: ['trackSelectables', 'setCharStartPose'],
           },
         },
       },
@@ -97,7 +97,7 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         },
       },
       charThrow: {
-        entry: ['playcharThrow', 'selectBut1'],
+        entry: ['playCharThrow', 'selectBut1'],
         exit: 'deselectBut1',
         on: {
           OBJ3D_POINTER_LEAVE: [
@@ -109,7 +109,7 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         },
       },
       charSitting: {
-        entry: ['playcharSitting', 'selectBut2'],
+        entry: ['playCharSitting', 'selectBut2'],
         exit: 'deselectBut2',
         on: {
           OBJ3D_POINTER_LEAVE: [
@@ -121,7 +121,7 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         },
       },
       charJump: {
-        entry: ['playcharJump', 'selectBut3'],
+        entry: ['playCcharJump', 'selectBut3'],
         exit: 'deselectBut3',
         on: {
           OBJ3D_POINTER_LEAVE: [
@@ -133,7 +133,7 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         },
       },
       charYes: {
-        entry: ['playcharYes', 'selectBut4'],
+        entry: ['playCharYes', 'selectBut4'],
         exit: 'deselectBut4',
         on: {
           OBJ3D_POINTER_LEAVE: [

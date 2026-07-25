@@ -12,7 +12,8 @@ cfg.orbitCtrls.rotateSpeed = 0.5
 cfg.orbitCtrls.enableDamping = true
 cfg.orbitCtrls.dampingFactor = 0.025;
 cfg.orbitCtrls.maxPolarAngle = 80;
-cfg.orbitCtrls.maxDistance = 25;
+cfg.orbitCtrls.maxDistance = 15;
+cfg.orbitCtrls.minDistance = 2;
 
 // Load the Draco-compressed 3D scene
 cfg.model.file = 'scene/character.glb';
